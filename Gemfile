@@ -13,13 +13,14 @@ gem 'active_model_serializers'
 gem 'dotenv-rails'
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'byebug'
+  gem 'pry'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
-  gem 'pry'
 end
 
 group :production do

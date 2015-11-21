@@ -1,4 +1,4 @@
-## Concession API
+## Concessions API
 
 get '/users'
 

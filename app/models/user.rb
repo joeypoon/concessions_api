@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
-  #regex email
+  #TODO email verification
 end

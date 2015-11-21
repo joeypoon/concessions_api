@@ -1,14 +1,15 @@
 class UsersController < ApiBaseController
   def index
-    render json: User.all
+    @users = User.all
+    render json: @users
   end
 
   def create
-    user = User.new user_params
-    sign_in user
+    @user = User.new user_params
+    sign_in @user
 
-    if user.save
-      render json: user
+    if @user.save!
+      render json: @user
     else
       render json: { message: "Failed" }, status: 422
     end
