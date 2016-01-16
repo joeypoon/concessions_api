@@ -3,5 +3,7 @@ FactoryGirl.define do
     name 'Cheesecake'
     price_in_cents 1000
     description 'Delicious cheesecake'
+    vendor
+    store
   end
 end

@@ -20,4 +20,13 @@ class ProductTest < ActiveSupport::TestCase
     request = build :product, description: ""
     assert_not request.valid?
   end
+
+  test 'validates presence of vendor or store' do
+    request = build :product, store: nil, vendor: nil
+    assert_not request.valid?
+    request = build :product, vendor: nil
+    assert request.valid?
+    request = build :product, store: nil
+    assert request.valid?
+  end
 end

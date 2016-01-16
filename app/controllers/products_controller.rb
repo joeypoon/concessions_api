@@ -22,6 +22,7 @@ class ProductsController < ApiBaseController
   private
 
     def product_params
-      params.require(:product).permit(:name, :price_in_cents, :description)
+      params.require(:product).permit(:name, :price_in_cents, :description,
+                                      :vendor_id, :store_id)
     end
 end

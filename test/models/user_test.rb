@@ -17,8 +17,13 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'validates uniqueness of email' do
-    user = create :user
+    create :user
     user = build :user
+    assert_not user.valid?
+  end
+
+  test 'validates presence of roles' do
+    user = build :user, roles: []
     assert_not user.valid?
   end
 end

@@ -13,8 +13,8 @@ class ProductsControllerTest < ActionController::TestCase
 
   test 'can post create' do
     assert_difference 'Product.count' do
-      product = attributes_for :product
-      post :create, product: product
+      product = build :product
+      post :create, product: product.as_json
       assert_response 200
     end
   end
