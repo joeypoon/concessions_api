@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  test 'factory is valid' do
+    user = build(:user)
+    assert user.valid?
+  end
+
   test 'validates presence of name' do
     user = build :user, name: ""
     assert_not user.valid?

@@ -29,6 +29,14 @@ post '/users'
         }
     }
 
+get '/users/:id'
+
+    {
+        "id": 1,
+        "name": "Joey Poon",
+        "email": "poonjf@gmail.com"
+    }
+
 #### Products
 get '/products'
 
@@ -59,5 +67,23 @@ get '/products/:id'
             "name": "Cheesecake",
             "price_in_cents": 1000,
             "description": "Delicious cheesecake"
+        }
+    }
+
+#### Vendors
+post '/vendors'
+
+    {
+        "vendor": {
+            "name": "I am a vendor"
+        }
+    }
+
+get '/vendors/:id'
+
+    {
+        "vendor": {
+            "id": 1
+            "name": "I am a vendor"
         }
     }

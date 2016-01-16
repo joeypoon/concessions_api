@@ -11,13 +11,18 @@ class UsersController < ApiBaseController
     if @user.save!
       render json: @user
     else
-      render json: { message: "Failed" }, status: 422
+      render json: { message: @user.errors }, status: 422
     end
+  end
+
+  def show
+    @user = User.find params[:id]
+    render json: @user
   end
 
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_digest)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

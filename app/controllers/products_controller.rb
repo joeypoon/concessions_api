@@ -10,17 +10,13 @@ class ProductsController < ApiBaseController
     if @product.save!
       render json: @product
     else
-      render json: { message: "Failed" }, status: 422
+      render json: { message: @prodoct.errors }, status: 422
     end
   end
 
   def show
     @product = Product.find params[:id]
-    if @product.present?
-      render json: @product
-    else
-      render json: { message: "Failed" }, status: 404
-    end
+    render json: @product
   end
 
   private

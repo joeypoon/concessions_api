@@ -22,5 +22,6 @@ class ProductsControllerTest < ActionController::TestCase
   test 'can get show' do
     get :show, id: @product.id
     assert_response 200
+    assert_not_nil assigns(:product)
   end
 end

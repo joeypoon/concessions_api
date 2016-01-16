@@ -18,4 +18,10 @@ class UsersControllerTest < ActionController::TestCase
       assert_response 200
     end
   end
+
+  test 'can get show' do
+    get :show, id: @user.id
+    assert_response 200
+    assert_not_nil assigns(:user)
+  end
 end

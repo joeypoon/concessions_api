@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
+  test 'factory is valid' do
+    product = build(:product)
+    assert product.valid?
+  end
+
   test 'validates presence of name' do
     request = build :product, name: ""
     assert_not request.valid?
