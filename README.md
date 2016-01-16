@@ -1,5 +1,6 @@
 ## Concessions API
-See [Documentation](https://github.com/joeypoon/nibbleme_api/wiki).
+See [documentation](https://github.com/joeypoon/nibbleme_api/wiki).
+Root URL: http://nibbleme.herokuapp.com/
 
 #### Users
 get '/users'
