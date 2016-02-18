@@ -20,6 +20,12 @@ class UsersController < ApiBaseController
     render json: @user
   end
 
+  def orders
+    @user = User.find params[:id]
+    @orders = params[:active] ? @user.orders.active : @user.orders
+    render json: @orders
+  end
+
   private
 
     def user_params

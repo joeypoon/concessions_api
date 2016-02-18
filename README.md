@@ -39,6 +39,19 @@ get '/users/:id'
         "email": "poonjf@gmail.com"
     }
 
+get '/users/:id/orders'
+    optional params: active: true - only return orders that aren't completed
+
+    [{
+        "order": {
+            "user_id": 1,
+            "store_id": 1,
+            "pickup_time": 2016-02-17 21:17:45 -0600,
+            "status": "received",
+            "product_ids": [1, 2, 3]
+        }
+    }]
+
 #### Products
 get '/products'
 
@@ -117,5 +130,50 @@ get '/stores/:id'
             "city": "Houston",
             "state": "Texas",
             "zip_code": 77077
+        }
+    }
+
+get '/stores/:id/orders'
+    optional params: active: true - only return orders that aren't complete
+
+    [{
+        "order": {
+            "user_id": 1,
+            "store_id": 1,
+            "pickup_time": 2016-02-17 21:17:45 -0600,
+            "status": "received",
+            "product_ids": [1, 2, 3]
+        }
+    }]
+
+#### Orders
+post '/orders'
+
+    {
+        "order": {
+            "user_id": 1,
+            "store_id": 1,
+            "pickup_time": 2016-02-17 21:17:45 -0600,
+            "product_ids": [1, 2, 3]
+        }
+    }
+
+get '/orders/:id'
+
+    {
+        "order": {
+            "user_id": 1,
+            "store_id": 1,
+            "pickup_time": 2016-02-17 21:17:45 -0600,
+            "status": "received",
+            "product_ids": [1, 2, 3]
+        }
+    }
+
+put '/orders/:id'
+
+    {
+        "order": {
+            "status": "completed"
         }
     }

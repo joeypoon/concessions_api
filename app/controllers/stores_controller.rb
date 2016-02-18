@@ -14,6 +14,12 @@ class StoresController < ApiBaseController
     render json: @store
   end
 
+  def orders
+    @store = Store.find params[:id]
+    @orders = params[:active] ? @store.orders.active : @store.orders
+    render json: @orders
+  end
+
   private
 
     def store_params

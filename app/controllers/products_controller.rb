@@ -10,7 +10,7 @@ class ProductsController < ApiBaseController
     if @product.save!
       render json: @product
     else
-      render json: { message: @prodoct.errors }, status: 422
+      render json: { message: @product.errors }, status: 422
     end
   end
 

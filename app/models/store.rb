@@ -1,6 +1,7 @@
 class Store < ActiveRecord::Base
   belongs_to :vendor
   has_many :products
+  has_many :orders
 
   validates :street_one, :street_two, :city, :state, :vendor,
             presence: true

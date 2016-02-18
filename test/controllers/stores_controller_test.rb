@@ -18,4 +18,12 @@ class StoresControllerTest < ActionController::TestCase
     assert_response 200
     assert_not_nil assigns(:store)
   end
+
+  test 'can get orders' do
+    order = create :order, store: @store
+    get :orders, id: @store.id
+    assert_response 200
+    assert_not_nil assigns(:orders)
+    assert assigns(:orders).include?(order)
+  end
 end
