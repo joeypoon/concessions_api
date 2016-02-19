@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProductsControllerTest < ActionController::TestCase
+class Api::V010::ProductsControllerTest < ActionController::TestCase
   setup do
     @product = create :product
   end

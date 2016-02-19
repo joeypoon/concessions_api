@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OrdersControllerTest < ActionController::TestCase
+class Api::V010::OrdersControllerTest < ActionController::TestCase
   setup do
     @user = create :user
     @order = create :order, user: @user

@@ -1,4 +1,4 @@
-class ProductsController < ApiBaseController
+class Api::V010::ProductsController < ApiBaseController
   def index
     @products = Product.all
     render json: @products

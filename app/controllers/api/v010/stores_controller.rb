@@ -1,4 +1,4 @@
-class StoresController < ApiBaseController
+class Api::V010::StoresController < ApiBaseController
   def create
     @store = Store.new store_params
 

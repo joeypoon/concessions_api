@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VendorsControllerTest < ActionController::TestCase
+class Api::V010::VendorsControllerTest < ActionController::TestCase
   setup do
     @vendor = create :vendor
   end
