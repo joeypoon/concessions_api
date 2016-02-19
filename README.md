@@ -2,6 +2,9 @@
 See [documentation](https://github.com/joeypoon/nibbleme_api/wiki).
 Root URL: http://nibbleme.herokuapp.com/
 
+### beta 0.1.0
+### prefix api calls with /api/VERSION (ie. http://nibbleme.herokuapp.com/api/v010/users)
+
 #### Users
 get '/users'
 
