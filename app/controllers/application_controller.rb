@@ -13,7 +13,11 @@ class ApplicationController < ActionController::API
 
     def authenticate_token
       if header_token.present?
-        unless current_user.present?
+        if current_user.present?
+          if current_user.token_expired?
+            render json: { message: "Token expired." }, status: 404
+          end
+        else
           render json: { message: "Invalid token." }, status: 404
         end
       else

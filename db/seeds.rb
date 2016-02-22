@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name: "Test User", email: "test_user@gmail.com",
+user = User.create(name: "Test User", email: "test_user@gmail.com",
             password: "password", password_confirmation: "password")
 vendor = Vendor.create(name: "Test Vendor")
 store = Store.create(vendor: vendor, name: "1", street_one: "123 Some Street",
@@ -15,3 +15,4 @@ store = Store.create(vendor: vendor, name: "1", street_one: "123 Some Street",
 product = Product.create(name: "Cheesecake", price_in_cents: 700,
                          description: "Delicious cheesecake", store: store,
                          vendor: vendor)
+order = Order.create(user: user, store: store, pickup_time: Time.now)

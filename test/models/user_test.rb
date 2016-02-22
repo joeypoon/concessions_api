@@ -34,4 +34,11 @@ class UserTest < ActiveSupport::TestCase
     user.generate_token(token)
     assert_equal user.token, (user.id.to_s + token)
   end
+
+  test 'can check if token expired' do
+    user = create :user
+    user.generate_token
+    user.token_expiration = Time.now
+    assert user.token_expired?
+  end
 end

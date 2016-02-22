@@ -11,13 +11,24 @@ class User < ActiveRecord::Base
   def generate_token(test_token=nil)
     if test_token.present?
       if Rails.env.test?
-        self.token = self.id.to_s + test_token
+        set_token test_token
       else
         puts "Can only set token in test ENV"
       end
     else
-      self.token = self.id.to_s + SecureRandom.base64(24)
+      set_token SecureRandom.base64(24)
     end
-    save
   end
+
+  def token_expired?
+    Time.now >= self.token_expiration
+  end
+
+  private
+
+    def set_token token
+      self.token = self.id.to_s + token
+      self.token_expiration = Time.now + 1.day
+      save
+    end
 end
