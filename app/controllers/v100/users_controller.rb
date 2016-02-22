@@ -1,5 +1,5 @@
 class V100::UsersController < ApplicationController
-  skip_before_action :authenticate_token, only: [:login]
+  skip_before_action :authenticate_token, only: [:create, :login]
 
   def index
     @users = User.all
