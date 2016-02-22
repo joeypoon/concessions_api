@@ -1,4 +1,6 @@
-class Api::V010::UsersController < ApiBaseController
+class V100::UsersController < ApplicationController
+  skip_before_action :authenticate_token, only: [:login]
+
   def index
     @users = User.all
     render json: @users
@@ -6,10 +8,9 @@ class Api::V010::UsersController < ApiBaseController
 
   def create
     @user = User.new user_params
-    sign_in @user
 
     if @user.save!
-      render json: @user
+      render json: { user: { id: @user.id, email: @user.email, token: @user.token } }
     else
       render json: { message: @user.errors }, status: 422
     end
@@ -24,6 +25,16 @@ class Api::V010::UsersController < ApiBaseController
     @user = User.find params[:id]
     @orders = params[:active] ? @user.orders.active : @user.orders
     render json: @orders
+  end
+
+  def login
+    @user = User.find_by_email user_params[:email]
+    if @user.try(:authenticate, user_params[:password])
+      @user.generate_token
+      render json: { user: { token: @user.token } }
+    else
+      render json: { error: "Invalid email/password combination" }
+    end
   end
 
   private

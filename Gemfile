@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.3.0'
 gem 'rails', '4.2.5'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -11,6 +11,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_model_serializers'
 gem 'dotenv-rails'
+gem 'rails-api'
+gem 'puma'
+gem 'faker'
 
 group :development, :test do
   gem 'factory_girl_rails'

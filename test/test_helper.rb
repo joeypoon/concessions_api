@@ -8,4 +8,11 @@ class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
 
   # Add more helper methods to be used by all tests here...
+
+  def setup_controller_test
+    @user = create :user
+    @token = SecureRandom.base64(24)
+    @user.generate_token(@token)
+    @request.headers['x-auth-token'] = @user.token
+  end
 end

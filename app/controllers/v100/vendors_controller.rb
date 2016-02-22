@@ -1,4 +1,4 @@
-class Api::V010::VendorsController < ApiBaseController
+class V100::VendorsController < ApplicationController
   def create
     @vendor = Vendor.new vendor_params
 

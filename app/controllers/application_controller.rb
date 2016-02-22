@@ -1,11 +1,23 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+class ApplicationController < ActionController::API
+  before_action :authenticate_token
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by_token header_token
   end
 
-  def sign_in user
-    session[:user_id] = user.id
-  end
+  private
+
+    def header_token
+      request.headers["x-auth-token"]
+    end
+
+    def authenticate_token
+      if header_token.present?
+        unless current_user.present?
+          render json: { message: "Invalid token." }, status: 404
+        end
+      else
+        render json: { message: "No token present." }, status: 404
+      end
+    end
 end

@@ -1,7 +1,8 @@
 require 'test_helper'
 
-class Api::V010::StoresControllerTest < ActionController::TestCase
+class V100::StoresControllerTest < ActionController::TestCase
   setup do
+    setup_controller_test
     @store = create :store
   end
 

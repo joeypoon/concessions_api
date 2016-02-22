@@ -1,4 +1,4 @@
-class Api::V010::OrdersController < ApiBaseController
+class V100::OrdersController < ApplicationController
   def create
     @order = Order.new order_params
 

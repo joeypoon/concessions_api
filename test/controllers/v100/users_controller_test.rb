@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class Api::V010::UsersControllerTest < ActionController::TestCase
+class V100::UsersControllerTest < ActionController::TestCase
   setup do
-    @user = create :user
+    setup_controller_test
   end
 
   test 'can get index' do
@@ -13,7 +13,7 @@ class Api::V010::UsersControllerTest < ActionController::TestCase
 
   test 'can post create' do
     assert_difference 'User.count' do
-      user = attributes_for :user, email: "another_email@gmail.com"
+      user = attributes_for :user
       post :create, user: user
       assert_response 200
     end
@@ -43,5 +43,10 @@ class Api::V010::UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:orders)
     assert assigns(:orders).include?(order)
     assert_not assigns(:orders).include?(bad_order)
+  end
+
+  test 'can login user' do
+    post :login, user: { email: @user.email, password: @user.password }
+    assert_response 200
   end
 end
