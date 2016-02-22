@@ -2,7 +2,6 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :store
   has_one :vendor, through: :store, autosave: false
-  has_many :products
 
   scope :active, -> { where.not(status: "completed") }
   scope :completed, -> { where(status: "completed") }
@@ -12,6 +11,10 @@ class Order < ActiveRecord::Base
 
   def display_status
     "Order " + status
+  end
+
+  def products
+    Product.where(id: self.product_ids)
   end
 
   private

@@ -16,7 +16,7 @@ class V100::OrdersController < ApplicationController
 
   def update
     @order = Order.find params[:id]
-    if @order.update_attributes(status: order_params[:status])
+    if @order.update_attributes(order_params)
       render json: @order
     else
       render json: { message: @order.errors }, status: 422
@@ -27,6 +27,6 @@ class V100::OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:user_id, :store_id, :pickup_time, :status,
-                                    :product_ids)
+                                    product_ids: [])
     end
 end
