@@ -1,7 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :vendor
   belongs_to :store
-  belongs_to :order
 
   validates :name, :price_in_cents, :description, presence: true
   validate :has_owner
