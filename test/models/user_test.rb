@@ -41,4 +41,26 @@ class UserTest < ActiveSupport::TestCase
     user.token_expiration = Time.now
     assert user.token_expired?
   end
+
+  test 'can get stripe customer' do
+    user = create :user
+    customer = user.stripe_customer
+    assert_not_nil customer
+  end
+
+  test 'creates stripe customer after create' do
+    token = Stripe::Token.get_test
+    user = create :user
+    customer = Stripe::Customer.retrieve(user.stripe_customer_id)
+    assert_equal user.stripe_customer_id, customer.id
+  end
+
+  test 'can save stripe card' do
+    token = Stripe::Token.get_test
+    user = create :user
+    customer = Stripe::Customer.retrieve(user.stripe_customer_id)
+    user.save_card token
+    cards = customer.sources.all(:object => "card").data.map { |c| c.id }
+    assert cards.include? token.card.id
+  end
 end

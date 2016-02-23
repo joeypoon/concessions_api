@@ -8,9 +8,10 @@ class V100::OrdersControllerTest < ActionController::TestCase
 
   test 'can post create' do
     assert_difference 'Order.count' do
+      token = Stripe::Token.get_test.id
       product = create :product
       order = build :order, user: @user, product_ids: [product.id]
-      post :create, order: order.as_json
+      post :create, order: order.as_json, stripe_token: token
       assert_response 200
     end
   end
@@ -26,5 +27,10 @@ class V100::OrdersControllerTest < ActionController::TestCase
     put :update, id: @order.id, order: order.as_json
     assert_response 200
     assert_equal order.status, Order.find(@order.id).status
+  end
+
+  test 'can post charge' do
+    product = create :product
+    order = create :order, product_ids: [product.id]
   end
 end

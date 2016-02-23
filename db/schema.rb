@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222035645) do
+ActiveRecord::Schema.define(version: 20160223035805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 20160222035645) do
     t.integer  "user_id"
     t.integer  "store_id"
     t.datetime "pickup_time"
-    t.string   "status",      default: "placed"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "product_ids", default: [],                    array: true
+    t.string   "status",           default: "placed"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "product_ids",      default: [],                    array: true
+    t.string   "stripe_charge_id"
   end
 
   add_index "orders", ["store_id"], name: "index_orders_on_store_id", using: :btree
@@ -60,11 +61,12 @@ ActiveRecord::Schema.define(version: 20160222035645) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.string   "roles",            default: ["consumer"],              array: true
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "roles",              default: ["consumer"],              array: true
     t.string   "token"
     t.datetime "token_expiration"
+    t.string   "stripe_customer_id"
   end
 
   create_table "vendors", force: :cascade do |t|

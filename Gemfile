@@ -14,8 +14,10 @@ gem 'dotenv-rails'
 gem 'rails-api'
 gem 'puma'
 gem 'faker'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'byebug'
   gem 'pry'

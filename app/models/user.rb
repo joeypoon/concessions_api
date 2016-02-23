@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :orders
 
   after_create :generate_token
+  after_create :create_stripe_customer
 
   validates :name, :roles, presence: true
   validates :email, presence: true, uniqueness: true
@@ -24,11 +25,28 @@ class User < ActiveRecord::Base
     Time.now >= self.token_expiration
   end
 
+  def save_card token
+    customer = Stripe::Customer.retrieve(self.stripe_customer_id)
+    customer.sources.create({:source => token})
+  end
+
+  def stripe_customer
+    Stripe::Customer.retrieve(self.stripe_customer_id)
+  end
+
   private
 
     def set_token token
       self.token = self.id.to_s + token
       self.token_expiration = Time.now + 1.day
       save
+    end
+
+    def create_stripe_customer
+      customer = Stripe::Customer.create(
+        email: "#{self.email}",
+        description: "#{self.id}"
+      )
+      self.stripe_customer_id = customer.id
     end
 end
